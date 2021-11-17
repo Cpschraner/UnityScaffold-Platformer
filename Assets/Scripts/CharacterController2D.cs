@@ -12,7 +12,7 @@ public class CharacterController2D : MonoBehaviour {
     /// CharacterController2D is often getting called by other scripts that want to gather/modify information from the player(Ex: PlayerMovement) 
     /// </summary>
     
-    [SerializeField] private float m_JumpForce = 800f;
+    [SerializeField] private float m_JumpForce = 50f;
     [SerializeField] public int m_AirJumps = 0;
     [SerializeField] private float m_FallGravity = 4f;
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;
@@ -72,16 +72,9 @@ public class CharacterController2D : MonoBehaviour {
         if (m_Grounded && jump)
         {
             m_Grounded = false;
-            m_RigidBody2D.AddForce(new Vector2(m_RigidBody2D.velocity.x, m_JumpForce));
+            m_RigidBody2D.AddForce(new Vector2(m_RigidBody2D.velocity.x-20, m_JumpForce));
         }
 
-        //Air Jump
-        else if (jump && m_AirJumpsLeft > 0)
-        {
-            m_Grounded = false;
-            m_RigidBody2D.AddForce(new Vector2(0f, m_JumpForce));
-            m_AirJumpsLeft--;
-        }
     }
 
     //Enhances the Jump by adding gravity when falling, short hop, and full hop

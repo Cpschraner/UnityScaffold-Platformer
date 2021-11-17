@@ -26,6 +26,10 @@ public class PlayerMovement : MonoBehaviour {
         {
             jump = true;
         }
+        if (Input.key("v"))
+        {
+            
+        }
     }
 
     // FixedUpdate is called multiple times per x amount of frames
