@@ -13,8 +13,11 @@ public class PlayerMovement : MonoBehaviour {
     bool jump = false;
     public CharacterController2D controller;
 
+	public Animator animator;
+
     void Start()
     {
+		animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController2D>();
     }
 
@@ -22,13 +25,11 @@ public class PlayerMovement : MonoBehaviour {
     void Update()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+		animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+
         if (Input.GetButtonDown("Jump"))
         {
             jump = true;
-        }
-        if (Input.key("v"))
-        {
-            
         }
     }
 
